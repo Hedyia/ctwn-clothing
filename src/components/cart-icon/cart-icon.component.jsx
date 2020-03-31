@@ -3,6 +3,7 @@ import { ReactComponent as ShoppingCart } from "../../assets/cart-icon.svg";
 import "./cart-icon.styles.scss";
 import { connect } from "react-redux";
 import { triggerCartDropdown } from "../../redux/cart/cart.actions";
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 const CartIcon = ({ triggerCartDropdown, itemsCount }) => {
   return (
     <div className="cart-icon" onClick={triggerCartDropdown}>
@@ -15,6 +16,6 @@ const mapDispatchToProps = dispatch => ({
   triggerCartDropdown: () => dispatch(triggerCartDropdown())
 });
 const mapStateToProps = state => ({
-  itemsCount: state.cart.items.length
+  itemsCount: selectCartItemsCount(state)
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
