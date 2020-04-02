@@ -4,6 +4,7 @@ import "./cart-icon.styles.scss";
 import { connect } from "react-redux";
 import { triggerCartDropdown } from "../../redux/cart/cart.actions";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
+import { createStructuredSelector } from "reselect";
 const CartIcon = ({ triggerCartDropdown, itemsCount }) => {
   return (
     <div className="cart-icon" onClick={triggerCartDropdown}>
@@ -15,7 +16,7 @@ const CartIcon = ({ triggerCartDropdown, itemsCount }) => {
 const mapDispatchToProps = dispatch => ({
   triggerCartDropdown: () => dispatch(triggerCartDropdown())
 });
-const mapStateToProps = state => ({
-  itemsCount: selectCartItemsCount(state)
+const mapStateToProps = createStructuredSelector({
+  itemsCount: selectCartItemsCount
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
